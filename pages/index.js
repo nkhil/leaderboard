@@ -1,14 +1,16 @@
 import Head from 'next/head';
-import Header from '@components/Header';
-import Footer from '@components/Footer';
+import Hero from '@components/Hero'
 
 import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
- h1 {
-   font-size: 4rem;
-   margin: 0;
- }
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;500;700&display=swap');
+
+  html, * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
 `;
 const Container = styled.div`
   text-align: center;
@@ -19,11 +21,11 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>SSR styled-components with Next.js Starter</title>
+        <title>Leaderboard API</title>
       </Head>
       <Container>
         <GlobalStyle />
-        <h1>Hello, world!</h1>
+        <Hero />
       </Container>
     </>
   );
