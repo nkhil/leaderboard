@@ -71,19 +71,6 @@ export default function Dashboard() {
     setShouldMakeNewApiKey(true);
   }
 
-  // if no database connection...
-  if (!isConnected) {
-    return (
-      <>
-        <WideContainer>
-          <Container>
-            <h2>Sorry, we're currently facing issues getting your details - Please try again shortly.</h2>
-          </Container>
-        </WideContainer>
-      </>
-    )
-  }
-
   if (!getInitialData && !shouldDisplayApiKey && !dataExists) {
     return (
       <>
