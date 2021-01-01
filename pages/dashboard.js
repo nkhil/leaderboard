@@ -2,14 +2,8 @@ import Head from 'next/head';
 import { useRouter } from "next/router";
 import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
-import { connectToDatabase } from '../utils/mongodb';
 import useSWR from 'swr';
-import styled from 'styled-components';
-import WideContainer from '@components/WideContainer';
-import Container from '@components/Container';
-import theme from '../constants/theme';
-import { TextField } from '@material-ui/core';
-import Button from '@components/Button';
+import CredentialsBox from '@components/CredentialsBox';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -68,18 +62,21 @@ export default function Dashboard() {
   }, [apiKeyData])
 
   const handleGenerateNewApiKeyButton = () => {
+    console.log('Clicked!')
     setShouldMakeNewApiKey(true);
   }
 
   if (!getInitialData && !shouldDisplayApiKey && !dataExists) {
     return (
       <>
-        <h2>You don't have an API key</h2>
-        <Button
-          text={'Create API Key'}
-          isInternal={true}
-          apiCall={true}
+        <CredentialsBox
+          status={'NO_API_KEY'}
           onClick={handleGenerateNewApiKeyButton}
+          credentials={{
+            clientId,
+            clientSecret,
+            apiKey,
+          }}
         />
       </>
     )
@@ -88,8 +85,15 @@ export default function Dashboard() {
   if (shouldDisplayApiKey) {
     return (
       <>
-        <h2>{clientId} {clientSecret} {apiKey}</h2>
-        <button onClick={() => setShouldDisplayApiKey(false)}>I've made a note of this</button>
+        <CredentialsBox
+          status={'NEW_API_KEY'}
+          onClick={() => setShouldDisplayApiKey(false)}
+          credentials={{
+            clientId,
+            clientSecret,
+            apiKey,
+          }}
+        />
       </>
     )
   }
@@ -97,7 +101,15 @@ export default function Dashboard() {
   if (dataExists) {
     return (
       <>
-        <h2>Your clientId is {clientId}</h2>
+        <CredentialsBox
+          status={'EXISTING_API_KEY'}
+          onClick={() => { }}
+          credentials={{
+            clientId,
+            clientSecret,
+            apiKey,
+          }}
+        />
       </>
     )
   }
