@@ -2,23 +2,26 @@ import WideContainer from '@components/WideContainer';
 import Button from '@components/Button';
 import theme from '../../constants/theme';
 import Image from 'next/image';
+import Container from '@components/Container';
+import { useAuth } from '../../utils/authProvider';
 
 import styled from 'styled-components';
 
 function Hero({ className }) {
+  const auth = useAuth();
   return (
     <WideContainer bgColour={theme.heroColour}>
-      <div className={className}>
+      <Container bgColour={theme.heroColour}>
         <Image
           src="/images/logo.png"
-          alt="Picture of the author"
+          alt="leaderboard"
           width={250}
           height={50}
         />
         <h2>Simple API to record scores and manage a leaderboard</h2>
         <Button
           text={'Get Started'}
-          link={'/sign-up'}
+          link={'/dashboard'}
           isInternal={true}
           newWindow={false}
         />
@@ -28,8 +31,20 @@ function Hero({ className }) {
           isInternal={true}
           newWindow={false}
         />
-      </div>
-    </WideContainer>
+        <button
+          type="button"
+          onClick={() => auth.signinWithProvider('google')}
+        >
+          Sign in with google
+        </button>
+        <button
+          type="button"
+          onClick={() => auth.signout()}
+        >
+          Logout
+        </button>
+      </Container>
+    </WideContainer >
   );
 }
 

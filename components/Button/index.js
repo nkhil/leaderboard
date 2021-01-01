@@ -2,8 +2,37 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import theme from '../../constants/theme'
 
-function Button({ className, text, link, isInternal, newWindow }) {
+function Button({ className, text, link, isInternal, apiCall, newWindow, onClick }) {
   const target = newWindow ? '_blank' : '';
+
+  switch (true) {
+    case (isInternal && !apiCall):
+      return (
+        <div className={className}>
+          <Link href={link} passHref={true}>
+            <button>{text}</button>
+          </Link>
+        </div>
+      )
+    case (isInternal && apiCall):
+      return (
+        <div className={className}>
+          <button onClick={onClick}>
+            {text}
+          </button>
+        </div>
+      )
+    case !isInternal:
+      return (
+        <div className={className}>
+          <a href={link} target={target}>
+            <button>{text}</button>
+          </a>
+        </div>
+      )
+    default:
+      break;
+  }
 
   if (isInternal) {
     return (
