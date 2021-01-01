@@ -13,7 +13,7 @@ import Button from '@components/Button';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export default function Dashboard({ isConnected }) {
+export default function Dashboard() {
   const auth = useAuth();
   const router = useRouter();
   const [userId, setUserId] = useState('');
@@ -120,14 +120,4 @@ export default function Dashboard({ isConnected }) {
       <h2>Loading...</h2>
     </>
   )
-}
-
-export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase()
-
-  const isConnected = await client.isConnected() // Returns true or false
-
-  return {
-    props: { isConnected },
-  }
 }
