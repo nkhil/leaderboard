@@ -15,7 +15,6 @@ export default async (req, res) => {
   const clientSecret = createClientSecret(SALT_LENGTH);
   console.log('🚀 ~ file: apikey.js ~ line 16 ~ clientSecret', clientSecret)
   const clientSecretHash = createHash(clientSecret);
-  const apiKeyHash = createHash(apiKey);
   const response = {
     clientId,
     clientSecret,
@@ -26,7 +25,7 @@ export default async (req, res) => {
       userId,
       clientId,
       clientSecretHash,
-      apiKeyHash,
+      apiKey,
     }
     const a = await addApiKey(entry)
     console.log('create new API key response', a);

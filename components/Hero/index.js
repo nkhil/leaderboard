@@ -1,25 +1,52 @@
-import WideContainer from '@components/WideContainer';
-import Button from '@components/Button';
 import theme from '../../constants/theme';
 import Image from 'next/image';
 import Container from '@components/Container';
 import { useAuth } from '../../utils/authProvider';
+import { Box, Flex, Text, Heading, Button, Stack } from "@chakra-ui/react";
+import Logo from '@components/Logo';
+import Navbar from '@components/Navbar';
+import { motion } from "framer-motion";
 
 import styled from 'styled-components';
 
-function Hero({ className }) {
+function Hero() {
   const auth = useAuth();
   return (
-    <WideContainer bgColour={theme.heroColour}>
-      <Container bgColour={theme.heroColour}>
-        <Image
-          src="/images/logo.png"
-          alt="leaderboard"
-          width={250}
-          height={50}
-        />
-        <h2>Simple API to record scores and manage a leaderboard</h2>
-        <Button
+    <Flex justifyContent="center" bg='#5773ff'>
+      <Flex
+        p={0}
+        pb={12}
+        width={{
+          sm: "30em",
+          md: "48em",
+          lg: "62em",
+          base: "30em",
+        }}
+        alignItems='center'
+        flexDirection='column'
+      >
+        <Navbar />
+        <motion.div
+          animate={{ y: -20 }}
+          transition={{ duration: 0.2 }}
+        >
+          <Heading
+            as='h2'
+            fontSize={{
+              base: '4xl',
+              md: '4xl',
+              lg: '5xl',
+            }}
+            fontWeight='600'
+            color='white'
+            textAlign='center'
+            px={2}
+            my={12}
+          >
+            A simple API to take the work out of managing users and leaderboards
+        </Heading>
+        </motion.div>
+        {/* <Button
           text={'Get Started'}
           link={'/dashboard'}
           isInternal={true}
@@ -30,8 +57,17 @@ function Hero({ className }) {
           link={'/documentation'}
           isInternal={true}
           newWindow={false}
-        />
-        <button
+        /> */}
+        <Stack spacing={4} direction="column" align="center" >
+          <Button as="a" href="/login" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+            Create Account
+          </Button>
+          <Button colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+            Read Documentation
+          </Button>
+
+        </Stack>
+        {/* <button
           type="button"
           onClick={() => auth.signinWithProvider('google')}
         >
@@ -42,9 +78,9 @@ function Hero({ className }) {
           onClick={() => auth.signout()}
         >
           Logout
-        </button>
-      </Container>
-    </WideContainer >
+        </button> */}
+      </Flex>
+    </Flex >
   );
 }
 

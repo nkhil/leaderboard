@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import Button from '@components/Button';
 import { TextField } from '@material-ui/core';
-import WideContainer from '@components/WideContainer';
 import Container from '@components/Container';
+import { Box } from "@chakra-ui/react";
 
 function CredentialsBox({ className, status, onClick, credentials }) {
   const { clientId, clientSecret, apiKey } = credentials;
@@ -80,12 +80,12 @@ function CredentialsBox({ className, status, onClick, credentials }) {
               disabled
               value={'Hidden'}
               style={{ width: 300 }}
-              label="Client password"
+              label="Client secret"
             />
             <TextField
               id="standard-disabled"
               disabled
-              value={'Hidden'}
+              value={apiKey}
               style={{ width: 300 }}
               label="API key"
             />
@@ -106,13 +106,13 @@ function CredentialsBox({ className, status, onClick, credentials }) {
   }
 
   return (
-    <WideContainer>
-      <Container>
+    <Box>
+      <Box maxW="sm">
         <div className={className}>
           {renderInformation(status)}
         </div>
-      </Container>
-    </WideContainer>
+      </Box>
+    </Box>
 
   )
 }

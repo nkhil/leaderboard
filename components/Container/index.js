@@ -1,20 +1,23 @@
 import styled from 'styled-components';
-import theme from '../../constants/theme';
+// import theme from '../../constants/theme';
+import { Box } from "@chakra-ui/react"
 
-function Container({ className, children }) {
+function Container({ children }) {
   return (
-    <div className={className}>
+    <Box bg="brand.100">
       {children}
-    </div>
+    </Box>
   )
 }
 
-export default styled(Container)`
-  background-color: ${props => {
-    if (props.bgColour) return props.bgColour;
-    return 'white';
-  }};
-  max-width: ${theme.width};
-  padding: 50px 20px;
-  margin: auto;
-`
+export default Container;
+
+// export default styled(Container)`
+//   background-color: ${props => {
+//     if (props.bgColour) return props.bgColour;
+//     return 'white';
+//   }};
+//   max-width: ${theme.width};
+//   padding: 50px 20px;
+//   margin: auto;
+// `

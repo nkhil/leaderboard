@@ -4,6 +4,7 @@ import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
 import useSWR from 'swr';
 import CredentialsBox from '@components/CredentialsBox';
+import { Container } from "@chakra-ui/react"
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -115,8 +116,8 @@ export default function Dashboard() {
   }
 
   return (
-    <>
-      <h2>Loading...</h2>
-    </>
+    <Container>
+      Loading...
+    </Container>
   )
 }
