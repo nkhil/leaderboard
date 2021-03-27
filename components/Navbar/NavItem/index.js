@@ -9,7 +9,7 @@ const NavItem = ({ children, isLast, to = "/", ...rest }) => {
       }}
     >
       <Text
-        color='#000'
+        color='#fff'
         fontWeight='500'
         fontSize={{
           base: '20px',

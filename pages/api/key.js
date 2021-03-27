@@ -1,16 +1,18 @@
 // import Model from '../../models/apiKey'
 import constants from '../../constants';
-import { getApiKey } from '../../helpers/database';
+import { getUserCredentials } from '../../helpers/database';
 import { connectToDatabase } from '../../utils/mongodb';
 
 export default async (req, res) => {
   const { userId } = req.query;
+  console.log('🚀 ~ file: key.js ~ line 8 ~ userId', userId)
   let response;
   const { client } = await connectToDatabase()
   const isConnected = await client.isConnected()
   if (isConnected) {
     try {
-      response = await getApiKey(userId)
+      response = await getUserCredentials(userId)
+      console.log('🚀 ~ file: key.js ~ line 14 ~ response', response)
     } catch (error) {
       console.log('error', error)
     }

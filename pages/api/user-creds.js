@@ -2,7 +2,7 @@
 import { generateApiKey, createHash } from '../../lib/apiKey';
 import constants from '../../constants';
 import { createClientId, createClientSecret } from '../../lib/clientCredentials';
-import { addApiKey, getApiKey } from '../../helpers/database';
+import { addApiKey, getApiKey, addUserCredentials } from '../../helpers/database';
 const { SALT_LENGTH, CLIENT_ID_LENGTH } = constants;
 
 export default async (req, res) => {
@@ -15,21 +15,27 @@ export default async (req, res) => {
 	const clientSecret = createClientSecret(SALT_LENGTH);
 	console.log('🚀 ~ file: apikey.js ~ line 16 ~ clientSecret', clientSecret)
 	const clientSecretHash = createHash(clientSecret);
-	const response = {
-		clientId,
-		clientSecret,
-		apiKey,
-	}
+  console.log('🚀 ~ file: user-creds.js ~ line 18 ~ clientSecretHash', clientSecretHash)
+
 	try {
 		const entry = {
-			userId,
 			clientId,
+			userId,
 			clientSecretHash,
-			apiKey,
+			apiKeys: [
+        { apiKey },
+      ],
 		}
-		await addApiKey(entry)
+		const response = await addUserCredentials(entry);
+    console.log('🚀 ~ file: user-creds.js ~ line 34 ~ response', response)
+    const credentials = {
+      clientId: response.clientId,
+      clientSecret,
+      apiKey,
+    }
+    res.status(200).json(credentials);
 	} catch (error) {
-		console.log('error', error)
+		console.log('error ===!\n', error)
+    res.status(500).json({ error });
 	}
-	res.status(200).json(response);
 };

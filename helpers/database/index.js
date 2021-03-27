@@ -1,4 +1,5 @@
-import { ApiKey } from '../../models';
+import { ApiKey, UserCredentials } from '../../models';
+// import { UserCredentials } from '../../models/userCredentials';
 
 export async function addApiKey(apiKey) {
   try {
@@ -15,4 +16,13 @@ export async function getApiKey(userId) {
   } catch (error) {
     throw error;
   }
+}
+
+export function getUserCredentials(userId) {
+  return UserCredentials.find({ userId }).exec()
+}
+
+export function addUserCredentials(userCreds) {
+  console.log('🚀 ~ file: index.js ~ line 26 ~ addUserCredentials ~ userCreds', userCreds)
+  return UserCredentials.create(userCreds);
 }

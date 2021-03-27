@@ -12,7 +12,9 @@ import styled from 'styled-components';
 function Hero() {
   const auth = useAuth();
   return (
-    <Flex justifyContent="center" bg='#5773ff'>
+    <>
+    <Navbar />
+    <Flex justifyContent="center" bg='#25A979'>
       <Flex
         p={0}
         pb={12}
@@ -25,7 +27,7 @@ function Hero() {
         alignItems='center'
         flexDirection='column'
       >
-        <Navbar />
+        
         <motion.div
           animate={{ y: -20 }}
           transition={{ duration: 0.2 }}
@@ -33,15 +35,16 @@ function Hero() {
           <Heading
             as='h2'
             fontSize={{
-              base: '4xl',
+              base: '3xl',
               md: '4xl',
               lg: '5xl',
             }}
-            fontWeight='600'
+            fontWeight='700'
             color='white'
             textAlign='center'
             px={2}
             my={12}
+            mt={20}
           >
             A simple API to take the work out of managing users and leaderboards
         </Heading>
@@ -81,6 +84,7 @@ function Hero() {
         </button> */}
       </Flex>
     </Flex >
+    </>
   );
 }
 

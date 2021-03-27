@@ -4,7 +4,9 @@ import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
 import useSWR from 'swr';
 import CredentialsBox from '@components/CredentialsBox';
-import { Container } from "@chakra-ui/react"
+import { Container } from "@chakra-ui/react";
+import Navbar from '@components/Navbar';
+import { Box, Flex, Text, Heading, Button, Stack } from "@chakra-ui/react";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -19,7 +21,9 @@ export default function Dashboard() {
   const [getInitialData, setGetInitialData] = useState(true);
   const [shouldMakeNewApiKey, setShouldMakeNewApiKey] = useState(false);
   const [shouldDisplayApiKey, setShouldDisplayApiKey] = useState(false);
+  const [shouldMakeNewUserCreds, setShouldMakeNewUserCreds] = useState(false);
   const [dataExists, setDataExists] = useState(false);
+  
   // Redirect if not signed in.
   useEffect(() => {
     if (auth.user === false) {
@@ -34,7 +38,7 @@ export default function Dashboard() {
   useEffect(() => {
     if (data && data.length === 0) {
       // if the user does not have an API key
-      // stop loading data like you would
+      // stop trying to load api key data
       setGetInitialData(false);
     } else if (data && data.length) {
       const { clientId } = data[0];
@@ -43,16 +47,15 @@ export default function Dashboard() {
     }
   }, [data])
 
-  const { data: apiKeyData, error: apiKeyError } = useSWR((userId && shouldMakeNewApiKey) ? `/api/something?userId=${userId}` : null, fetcher);
+  const { data: userCreds, error: userCredsError } = useSWR((userId && shouldMakeNewUserCreds) ? `/api/user-creds?userId=${userId}` : null, fetcher);
 
   useEffect(() => {
-    if (apiKeyData) {
-      console.log('🚀 ~ file: dashboard.js ~ line 55 ~ useEffect ~ apiKeyData', apiKeyData)
+    if (userCreds) {
       const {
         clientId,
         clientSecret,
         apiKey,
-      } = apiKeyData
+      } = userCreds
       setClientId(clientId);
       setClientSecret(clientSecret);
       setApiKey(apiKey);
@@ -60,16 +63,17 @@ export default function Dashboard() {
       setShouldMakeNewApiKey(false);
       setDataExists(true);
     }
-  }, [apiKeyData])
+  }, [userCreds])
 
   const handleGenerateNewApiKeyButton = () => {
-    console.log('Clicked!')
-    setShouldMakeNewApiKey(true);
+    console.log('Making new user creds!')
+    setShouldMakeNewUserCreds(true);
   }
 
   if (!getInitialData && !shouldDisplayApiKey && !dataExists) {
     return (
       <>
+      <Navbar />
         <CredentialsBox
           status={'NO_API_KEY'}
           onClick={handleGenerateNewApiKeyButton}
@@ -86,6 +90,7 @@ export default function Dashboard() {
   if (shouldDisplayApiKey) {
     return (
       <>
+        <Navbar />
         <CredentialsBox
           status={'NEW_API_KEY'}
           onClick={() => setShouldDisplayApiKey(false)}
@@ -102,6 +107,7 @@ export default function Dashboard() {
   if (dataExists) {
     return (
       <>
+        <Navbar />
         <CredentialsBox
           status={'EXISTING_API_KEY'}
           onClick={() => { }}
