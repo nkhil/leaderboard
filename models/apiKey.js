@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+// const { Schema, model } = require("mongoose");
 
-const ApiKeySchema = new Schema({
-  apiKey: { type: String, required: true },
-});
+// const ApiKeySchema = new Schema({
+//   apiKey: { type: String, required: true },
+// });
 
-module.exports = model("ApiKey", ApiKeySchema);
+// module.exports = model("ApiKey", ApiKeySchema);

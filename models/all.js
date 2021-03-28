@@ -1,2 +1,2 @@
-require('./apiKey')
+// require('./apiKey')
 require('./userCredentials')
