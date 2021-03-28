@@ -13,12 +13,11 @@ export default async (req, res) => {
     try {
       response = await getUserCredentials(userId)
       console.log('🚀 ~ file: key.js ~ line 14 ~ response', response)
+      return res.status(200).json(response);
     } catch (error) {
       console.log('error', error)
     }
   } else {
     return res.status(500).send();
   }
-
-  return res.status(200).json(response);
 };
