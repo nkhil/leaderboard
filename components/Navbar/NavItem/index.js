@@ -1,12 +1,13 @@
 import { Link, Text, Box } from "@chakra-ui/react";
 
-const NavItem = ({ children, isLast, to = "/", ...rest }) => {
+const NavItem = ({ children, isLast, onClick, to = "/", ...rest }) => {
   return (
     <Link
       href={to}
       _hover={{
         borderBottom: '1px solid red',
       }}
+      onClick={onClick}
     >
       <Text
         color='#fff'

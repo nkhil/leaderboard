@@ -31,7 +31,9 @@ export default async (req, res) => {
     const credentials = {
       clientId: response.clientId,
       clientSecret,
-      apiKey,
+      apiKeys: [
+        { apiKey }
+      ],
     }
     res.status(200).json(credentials);
 	} catch (error) {

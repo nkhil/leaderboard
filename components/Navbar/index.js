@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Stack, Flex, Button } from "@chakra-ui/react";
+import { useAuth } from "../../utils/authProvider";
 import MenuToggleButton from '@components/MenuToggleButton';
 import NavItem from './NavItem';
 import Logo from '@components/Logo';
@@ -26,6 +27,7 @@ const NavBarContainer = ({ children, ...props }) => {
 
 
 function Navbar(props) {
+  const auth = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen)
@@ -45,22 +47,37 @@ function Navbar(props) {
           direction={["column", "row", "row", "row"]}
           pt={[4, 4, 0, 0]}
         >
-          <NavItem to='/'>Home</NavItem>
-          <NavItem to='/dashboard'>Dashboard</NavItem>
-          <NavItem to='/login'>Sign in</NavItem>
-          <NavItem to='/'>
-            <Button
-              size="md"
-              rounded="md"
-              color='#000'
-              bg={["white", "white", "primary.500", "primary.500"]}
-              _hover={{
-                bg: ["black", "black", "black", "black"]
-              }}
-            >
-              Sign up
-          </Button>
-          </NavItem>
+          {auth.user === false 
+            &&
+            <>
+              <NavItem to='/'>Home</NavItem>
+              <NavItem to='/login'>Sign in</NavItem>
+              <NavItem to='/'>
+                <Button
+                  size="md"
+                  rounded="md"
+                  color='#000'
+                  bg={["white", "white", "primary.500", "primary.500"]}
+                  _hover={{
+                    bg: ["black", "black", "black", "black"]
+                  }}
+                >
+                  Sign up
+              </Button>
+              </NavItem>
+            </>
+          }
+          {auth.user 
+            &&
+            <>
+              <NavItem to='/'>Home</NavItem>
+              <NavItem to='/dashboard'>Dashboard</NavItem>
+              <NavItem onClick={() => auth.signout()}>
+                Log out
+              </NavItem>
+            </>
+          }
+          
         </Stack>
       </Box>
     </NavBarContainer>

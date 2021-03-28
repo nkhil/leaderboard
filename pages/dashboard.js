@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [userId, setUserId] = useState('');
   const [clientId, setClientId] = useState('');
   const [clientSecret, setClientSecret] = useState('')
-  const [apiKey, setApiKey] = useState('');
+  const [apiKeys, setApiKeys] = useState([]);
   const [loading, setLoading] = useState(false);
   const [getInitialData, setGetInitialData] = useState(true);
   const [shouldMakeNewApiKey, setShouldMakeNewApiKey] = useState(false);
@@ -41,8 +41,9 @@ export default function Dashboard() {
       // stop trying to load api key data
       setGetInitialData(false);
     } else if (data && data.length) {
-      const { clientId } = data[0];
+      const [{ clientId, apiKeys }] = data;
       setClientId(clientId);
+      setApiKeys(apiKeys);
       setDataExists(true);
     }
   }, [data])
@@ -51,14 +52,20 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (userCreds) {
+      console.log('usercreds', userCreds);
       const {
         clientId,
         clientSecret,
-        apiKey,
+        apiKeys,
       } = userCreds
+      console.log({
+        clientId,
+        clientSecret,
+        apiKeys,
+      })
       setClientId(clientId);
       setClientSecret(clientSecret);
-      setApiKey(apiKey);
+      setApiKeys(apiKeys);
       setShouldDisplayApiKey(true);
       setShouldMakeNewApiKey(false);
       setDataExists(true);
@@ -80,7 +87,7 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKey,
+            apiKeys,
           }}
         />
       </>
@@ -97,7 +104,7 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKey,
+            apiKeys,
           }}
         />
       </>
@@ -114,7 +121,7 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKey,
+            apiKeys,
           }}
         />
       </>
