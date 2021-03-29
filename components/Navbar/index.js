@@ -51,6 +51,7 @@ function Navbar(props) {
             &&
             <>
               <NavItem to='/'>Home</NavItem>
+              <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/login'>Sign in</NavItem>
               <NavItem to='/'>
                 <Button
@@ -71,6 +72,7 @@ function Navbar(props) {
             &&
             <>
               <NavItem to='/'>Home</NavItem>
+              <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/dashboard'>Dashboard</NavItem>
               <NavItem onClick={() => auth.signout()}>
                 Log out

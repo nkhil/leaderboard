@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { useAuth } from "../../utils/authProvider";
-// import Button from '@components/Button';
-import { TextField } from '@material-ui/core';
-import { Box, Flex, Text, Heading, Stack, Button, VStack } from "@chakra-ui/react";
-import { Fonts } from 'constants/fonts';
+import { Box, Flex, Text, Stack, Button } from "@chakra-ui/react";
 import { MdDelete, MdEmail } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
 import { FaTwitter } from "react-icons/fa";
+import Heading from '@components/Heading';
+import CredentialsBoxContainer from './CredentialsBoxContainer';
+import GreyContainer from './GreyContainer';
+import CTAButton from './Button';
 
 function CredentialsBox({ className, status, onClick, credentials }) {
   const { clientId, clientSecret, apiKeys } = credentials;
@@ -24,251 +25,149 @@ function CredentialsBox({ className, status, onClick, credentials }) {
       case status === STATUSES['noApiKey']:
         return (
           <>
-              <Heading
-                as='h2'
-                marginTop="20px"
-                marginBottom="10px"
-                fontSize={{
-                  base: '3xl',
-                  md: '2xl',
-                  lg: '2xl',
-                }}
-                fontWeight='700'
-                px={0}
-              >
+            <Heading>
               You currently don't have any client credentials
-              </Heading>
-              <Text as="p">
-                Once you create your client credentials, we’ll automatically make an API key for you.
-              </Text>
-              <Text as="p" marginTop="10px">
-                Please note these credentials as they will only be displayed once.
-              </Text>
-              <Button 
-                size="lg" 
-                bg="#25A979"
-                color="#fff"
-                height="40px"
-                width="250px"
-                borderRadius="5px"
-                marginTop="30px"
-                _hover={{ bg: "brand.300" }}
-                onClick={onClick}
-              >
-                Create my client credentials
-              </Button>
-            <button
-              type="button"
-              onClick={() => auth.signout()}
-            >
-              Logout
-            </button>
+            </Heading>
+            <Text as="p">
+              Once you create your client credentials, we’ll automatically make an API key for you.
+            </Text>
+            <Text as="p" marginTop="10px">
+              Please note these credentials as they will only be displayed once.
+            </Text>
+            <CTAButton 
+              text='Create my client credentials'
+              onClick={onClick}
+            />
           </>
         )
       case status === STATUSES['newApiKey']:
         return (
           <>
-              <Heading
-                as='h2'
-                marginTop="20px"
-                marginBottom="10px"
-                fontSize={{
-                  base: '3xl',
-                  md: '2xl',
-                  lg: '2xl',
-                }}
-                fontWeight='700'
-                px={0}
-              >
-                Your credentials are ready!
-              </Heading>
-              <Text as="p" mb={4}>
-                Tap or click on the button below once you've noted your credentials down.
-              </Text>
+            <Heading>
+              Your credentials are ready!
+            </Heading>
+            <Text as="p" mb={4}>
+              Tap or click on the button below once you've noted your credentials down.
+            </Text>
+            <GreyContainer>
               <Flex
-                p={[4, 5, 6,   12]}
+                backgroundColor='#E06969'
+                padding={2}
+                borderRadius='sm'
+                marginBottom={8}
                 width={{
-                  sm: "20em",
-                  md: "35em",
-                  lg: "50em",
-                  base: "20em",
+                  sm: "10em",
+                  md: "25em",
+                  lg: "30em",
+                  base: "18em",
                 }}
-                flexDirection='column'
-                justifyContent='center'
-                backgroundColor='#EEEEEE'
               >
-                <Flex
-                  backgroundColor='#E06969'
-                  padding={2}
-                  borderRadius='sm'
-                  marginBottom={8}
-                  width={{
-                    sm: "10em",
-                    md: "25em",
-                    lg: "30em",
-                    base: "18em",
-                  }}
+                <Text as="p"
+                  color='#fff'
+                  fontWeight='600'
                 >
-                  <Text as="p"
-                    color='#fff'
-                    fontWeight='600'
-                  >
-                    Note: These credentials will not be shown again. If you lose them, you will need to generate a new one. All your API keys will need to be generated again as well.
-                  </Text>
-                </Flex>
-                <Stack spacing='10px' mb='6' fontFamily={'mono'}>
-                  <Box>
-                    <Text>
-                      Client ID
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text color='brand.200' fontSize='lg' fontWeight={600}>
-                      {clientId}
-                    </Text>
-                  </Box>
-                </Stack>
-                <Stack spacing='10px' mb='6' fontFamily={'mono'}>
-                  <Box>
-                    <Text>
-                      Client Secret
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text color='brand.200' fontSize='lg' fontWeight={600}  >
-                      {clientSecret}
-                    </Text>
-                  </Box>
-                </Stack>
+                  Note: These credentials will not be shown again. If you lose them, you will need to generate a new one. All your API keys will need to be generated again as well.
+                </Text>
               </Flex>
-                <Button 
-                size="lg" 
-                bg="#25A979"
-                color="#fff"
-                height="40px"
-                width="250px"
-                borderRadius="5px"
-                marginTop="30px"
-                _hover={{ bg: "brand.300" }}
-                onClick={onClick}
-                >
-                I have noted it down
-              </Button>
-              <button
-              type="button"
-              onClick={() => auth.signout()}
-            >sign out</button>
+              <Stack spacing='10px' mb='6' fontFamily={'mono'}>
+                <Box>
+                  <Text>
+                    Client ID
+                  </Text>
+                </Box>
+                <Box>
+                  <Text color='brand.200' fontSize='lg' fontWeight={600}>
+                    {clientId}
+                  </Text>
+                </Box>
+              </Stack>
+              <Stack spacing='10px' mb='6' fontFamily={'mono'}>
+                <Box>
+                  <Text>
+                    Client Secret
+                  </Text>
+                </Box>
+                <Box>
+                  <Text color='brand.200' fontSize='lg' fontWeight={600}  >
+                    {clientSecret}
+                  </Text>
+                </Box>
+              </Stack>
+            </GreyContainer>
+            <CTAButton 
+              text='I have noted it down'
+              onClick={onClick}
+            />
           </>
         )
       case status === STATUSES['existingApiKey']:
         return (
           <>
-            <Heading
-              as='h2'
-              marginTop="20px"
-              marginBottom="10px"
-              fontSize={{
-                base: 'xl',
-                md: '2xl',
-                lg: '2xl',
-              }}
-              fontWeight='700'
-              px={0}
-            >
+            <Heading>
               Your API keys
             </Heading>
-            <Flex
-              p={[4, 5, 6,   12]}
-              width={{
-                sm: "20em",
-                md: "35em",
-                lg: "50em",
-                base: "20em",
-              }}
-              flexDirection='column'
-              justifyContent='center'
-              backgroundColor='#EEEEEE'
-            >
-              <h4>Key</h4>
-              {apiKeys.map(key => {
+            <GreyContainer>
+              <Heading>API Keys</Heading>
+              {apiKeys.map((key, idx) => {
                 const { apiKey, _id: listKey } = key;
                 return (
                   <>
-                    <Flex flexDirection='row' key={listKey}>
-                      <Text color='brand.200' fontSize={['xs', 'sm', 'md', 'lg']} fontWeight={600} fontFamily={'mono'} >
-                      {apiKey}
+                    <Flex 
+                      flexDirection={['column', 'row']} 
+                      key={listKey}
+                      alignItems='center'
+                      borderBottom='1px solid grey'
+                      borderTop='1px solid grey'
+                      py={2}
+                      // bg='red.500'
+                    >
+                      <Text color='brand.200' fontSize={['sm', 'sm', 'md', 'lg']} fontWeight={600} fontFamily={'mono'} >
+                        {apiKey}
                       </Text>
-                      <Box ml='auto'>
+                      <Flex
+                        flexDirection={'column'}
+                        alignItems='center'
+                        marginLeft='auto'
+                        padding='5px'
+                      >
                         <MdDelete color='brand.200' size={20}/>
-                      </Box>
+                        <Text>Delete</Text>
+                      </Flex>
                     </Flex>
                   </>
                 )
               })}
-            </Flex>
-            <Heading
-              as='h2'
-              marginTop="20px"
-              marginBottom="10px"
-              fontSize={{
-                base: 'xl',
-                md: '2xl',
-                lg: '2xl',
-              }}
-              fontWeight='700'
-              px={0}
-            >
+            </GreyContainer>
+            <Heading>
               Your client credentials
             </Heading>
-            <Flex
-                p={[4, 5, 6,   12]}
-                width={{
-                  sm: "20em",
-                  md: "35em",
-                  lg: "50em",
-                  base: "20em",
-                }}
-                flexDirection='column'
-                justifyContent='center'
-                backgroundColor='#EEEEEE'
-              >
-                <Stack spacing='10px' mb='6' fontFamily={'mono'}>
-                  <Box>
-                    <Text fontWeight={600}>
-                      Client ID
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text color='brand.200' fontSize='lg' fontWeight={600}>
-                      {clientId}
-                    </Text>
-                  </Box>
-                </Stack>
-                <Stack spacing='10px' mb='6' fontFamily={'mono'}>
-                  <Box>
-                    <Text fontWeight={600}>
-                      Client Secret
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text color='brand.200' fontSize='lg' fontWeight={600}  >
-                      {"<HIDDEN>"}
-                    </Text>
-                  </Box>
-                </Stack>
-              </Flex>
-              <Heading
-              as='h2'
-              marginTop="20px"
-              marginBottom="10px"
-              fontSize={{
-                base: 'xl',
-                md: '2xl',
-                lg: '2xl',
-              }}
-              fontWeight='700'
-              px={0}
-            >
+            <GreyContainer>
+              <Stack spacing='10px' mb='6' fontFamily={'mono'}>
+                <Box>
+                  <Text fontWeight={600}>
+                    Client ID
+                  </Text>
+                </Box>
+                <Box>
+                  <Text color='brand.200' fontSize='lg' fontWeight={600}>
+                    {clientId}
+                  </Text>
+                </Box>
+              </Stack>
+              <Stack spacing='10px' mb='6' fontFamily={'mono'}>
+                <Box>
+                  <Text fontWeight={600}>
+                    Client Secret
+                  </Text>
+                </Box>
+                <Box>
+                  <Text color='brand.200' fontSize='lg' fontWeight={600}  >
+                    {"<HIDDEN>"}
+                  </Text>
+                </Box>
+              </Stack>
+            </GreyContainer>
+            <Heading>
               Documentation
             </Heading>
             <Text as="p" mb={4}>
@@ -277,29 +176,24 @@ function CredentialsBox({ className, status, onClick, credentials }) {
             <Button isExternal as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<BiLinkExternal />} colorScheme="teal" variant="solid">
               Read documentation
             </Button>
-            <Heading
-            as='h2'
-            marginTop="20px"
-            marginBottom="10px"
-            fontSize={{
-              base: 'xl',
-              md: '2xl',
-              lg: '2xl',
-            }}
-            fontWeight='700'
-            px={0}
-          >
-            Support
-          </Heading>
+            <Heading>
+              Support
+            </Heading>
           <Text as="p" mb={4}>
             If you'd like help or support, you can reach out to us directly.
           </Text>
-          <Button isExternal as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<MdEmail />} variant="solid">
-            Email
-          </Button>
-          <Button size="md" width='200px' colorScheme="twitter" leftIcon={<FaTwitter />}>
-            Twitter
-          </Button>
+          <Stack direction={["column", "row"]} spacing='10px' mb='6'>
+            <Box>
+              <Button isExternal as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<MdEmail />} variant="solid">
+                Email
+              </Button>
+            </Box>
+            <Box>
+              <Button size="md" width='200px' bg="#25A979" color="#fff" leftIcon={<FaTwitter />}>
+                Twitter
+              </Button>
+            </Box>
+          </Stack>
           </>
         )
       default:
@@ -313,21 +207,9 @@ function CredentialsBox({ className, status, onClick, credentials }) {
 
   return (
     <>
-      <Flex
-        margin='auto'
-        p={0}
-        pb={12}
-        width={{
-          sm: "15em",
-          md: "40em",
-          lg: "50em",
-          base: "20em",
-        }}
-        flexDirection='column'
-        justifyContent='center'
-      >
-      {renderInformation(status)}
-      </Flex>
+      <CredentialsBoxContainer>
+        {renderInformation(status)}
+      </CredentialsBoxContainer>
     </>
 
   )

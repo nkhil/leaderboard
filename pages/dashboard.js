@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from "next/router";
 import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
@@ -6,7 +5,7 @@ import useSWR from 'swr';
 import CredentialsBox from '@components/CredentialsBox';
 import { Container } from "@chakra-ui/react";
 import Navbar from '@components/Navbar';
-import { Box, Flex, Text, Heading, Button, Stack } from "@chakra-ui/react";
+import LoadingScreen from '@components/LoadingScreen';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -19,7 +18,6 @@ export default function Dashboard() {
   const [apiKeys, setApiKeys] = useState([]);
   const [loading, setLoading] = useState(false);
   const [getInitialData, setGetInitialData] = useState(true);
-  const [shouldMakeNewApiKey, setShouldMakeNewApiKey] = useState(false);
   const [shouldDisplayApiKey, setShouldDisplayApiKey] = useState(false);
   const [shouldMakeNewUserCreds, setShouldMakeNewUserCreds] = useState(false);
   const [dataExists, setDataExists] = useState(false);
@@ -36,9 +34,9 @@ export default function Dashboard() {
   const { data, error } = useSWR((userId && getInitialData) ? `/api/key?userId=${userId}` : null, fetcher)
 
   useEffect(() => {
+    // if the user does not have at least 1 API key
+    // stop trying to load api key data
     if (data && data.length === 0) {
-      // if the user does not have an API key
-      // stop trying to load api key data
       setGetInitialData(false);
     } else if (data && data.length) {
       const [{ clientId, apiKeys }] = data;
@@ -58,16 +56,10 @@ export default function Dashboard() {
         clientSecret,
         apiKeys,
       } = userCreds
-      console.log({
-        clientId,
-        clientSecret,
-        apiKeys,
-      })
       setClientId(clientId);
       setClientSecret(clientSecret);
       setApiKeys(apiKeys);
       setShouldDisplayApiKey(true);
-      setShouldMakeNewApiKey(false);
       setDataExists(true);
     }
   }, [userCreds])
@@ -129,8 +121,6 @@ export default function Dashboard() {
   }
 
   return (
-    <Container>
-      Loading...
-    </Container>
+    <LoadingScreen />
   )
 }
