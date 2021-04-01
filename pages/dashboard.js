@@ -3,7 +3,6 @@ import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
 import useSWR from 'swr';
 import CredentialsBox from '@components/CredentialsBox';
-import { Container } from "@chakra-ui/react";
 import Navbar from '@components/Navbar';
 import LoadingScreen from '@components/LoadingScreen';
 
@@ -39,9 +38,8 @@ export default function Dashboard() {
     if (data && data.length === 0) {
       setGetInitialData(false);
     } else if (data && data.length) {
-      const [{ clientId, apiKeys }] = data;
+      const [{ clientId }] = data;
       setClientId(clientId);
-      setApiKeys(apiKeys);
       setDataExists(true);
     }
   }, [data])
@@ -54,11 +52,9 @@ export default function Dashboard() {
       const {
         clientId,
         clientSecret,
-        apiKeys,
       } = userCreds
       setClientId(clientId);
       setClientSecret(clientSecret);
-      setApiKeys(apiKeys);
       setShouldDisplayApiKey(true);
       setDataExists(true);
     }
@@ -79,7 +75,6 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKeys,
           }}
         />
       </>
@@ -96,7 +91,6 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKeys,
           }}
         />
       </>
@@ -113,7 +107,6 @@ export default function Dashboard() {
           credentials={{
             clientId,
             clientSecret,
-            apiKeys,
           }}
         />
       </>
@@ -121,6 +114,9 @@ export default function Dashboard() {
   }
 
   return (
-    <LoadingScreen />
+    <>
+      <Navbar />
+      <LoadingScreen />
+    </>
   )
 }

@@ -9,7 +9,7 @@ function SignInForm() {
   const handleSignInWithGoogle = () => auth.signinWithProvider('google');
 
   return (
-    <Box bg='#f6f8fa' p={6} borderRadius='5px' w='350px' border='1px solid #eaecef'>
+    <Box bg='#fff' p={6} borderRadius='5px' w='350px' border='1px solid #eaecef'>
       <form action='submit'>
         <Stack spacing={2}>
           <FormControl isRequired>
@@ -26,8 +26,8 @@ function SignInForm() {
               <Input type='password' placeholder='Password' aria-label='password' bg='white' />
             </InputGroup>
           </FormControl>
-          <Button rightIcon={<BiCheckCircle size={20} />} type='submit' colorScheme='blue'>Sign in</Button>
-          <Button onClick={handleSignInWithGoogle} leftIcon={<AiFillGoogleCircle size={20} />} variant="outline" type='button'>Sign in using Google</Button>
+          <Button type='submit' bg="#25A979" color='white'>Sign in</Button>
+          <Button onClick={handleSignInWithGoogle} leftIcon={<AiFillGoogleCircle size={20} />} type='button' colorScheme='blue'>Sign in using Google</Button>
         </Stack>
       </form>
     </Box>

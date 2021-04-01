@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useAuth } from "../../utils/authProvider";
-import { Box, Flex, Text, Stack, Button } from "@chakra-ui/react";
+import { Box, Flex, Text, Stack, Button, Link } from "@chakra-ui/react";
 import { MdDelete, MdEmail } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
 import { FaTwitter } from "react-icons/fa";
@@ -104,41 +104,6 @@ function CredentialsBox({ className, status, onClick, credentials }) {
         return (
           <>
             <Heading>
-              Your API keys
-            </Heading>
-            <GreyContainer>
-              <Heading>API Keys</Heading>
-              {apiKeys.map((key, idx) => {
-                const { apiKey, _id: listKey } = key;
-                return (
-                  <>
-                    <Flex 
-                      flexDirection={['column', 'row']} 
-                      key={listKey}
-                      alignItems='center'
-                      borderBottom='1px solid grey'
-                      borderTop='1px solid grey'
-                      py={2}
-                      // bg='red.500'
-                    >
-                      <Text color='brand.200' fontSize={['sm', 'sm', 'md', 'lg']} fontWeight={600} fontFamily={'mono'} >
-                        {apiKey}
-                      </Text>
-                      <Flex
-                        flexDirection={'column'}
-                        alignItems='center'
-                        marginLeft='auto'
-                        padding='5px'
-                      >
-                        <MdDelete color='brand.200' size={20}/>
-                        <Text>Delete</Text>
-                      </Flex>
-                    </Flex>
-                  </>
-                )
-              })}
-            </GreyContainer>
-            <Heading>
               Your client credentials
             </Heading>
             <GreyContainer>
@@ -162,11 +127,14 @@ function CredentialsBox({ className, status, onClick, credentials }) {
                 </Box>
                 <Box>
                   <Text color='brand.200' fontSize='lg' fontWeight={600}  >
-                    {"<HIDDEN>"}
+                    {"**********"}
                   </Text>
                 </Box>
               </Stack>
             </GreyContainer>
+            <Link href='/forgot-client-credentials' fontSize="md" color="brand.200" mt={2}>
+              Forgot your credentials?
+            </Link>
             <Heading>
               Documentation
             </Heading>
