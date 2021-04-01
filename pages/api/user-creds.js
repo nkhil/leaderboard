@@ -4,6 +4,7 @@ import constants from '../../constants';
 import { createClientId, createClientSecret } from '../../lib/clientCredentials';
 import { addUserCredentials } from '../../helpers/database';
 const { SALT_LENGTH, CLIENT_ID_LENGTH } = constants;
+import '../../models/all';
 
 export default async (req, res) => {
 	const { userId } = req.query;
