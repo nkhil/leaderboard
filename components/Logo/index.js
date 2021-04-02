@@ -1,17 +1,5 @@
-import React from "react"
-import { Box, Text, Image } from "@chakra-ui/react"
+import Logo from '../../assets/svg/logo.svg';
 
-function Logo(props) {
-  return (
-    <Box {...props}>
-      <Image
-        src="/images/logo.png"
-        alt="leaderboard"
-        width={250}
-        height={50}
-      />
-    </Box>
-  )
-}
+const Named = () => <Logo />
 
-export default Logo;
+export default Named;

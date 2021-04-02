@@ -1,16 +1,10 @@
-import theme from '../../constants/theme';
-import Image from 'next/image';
-import Container from '@components/Container';
-import { useAuth } from '../../utils/authProvider';
-import { Box, Flex, Text, Heading, Button, Stack } from "@chakra-ui/react";
-import Logo from '@components/Logo';
+import { Flex, Heading, Button, Stack } from "@chakra-ui/react";
 import Navbar from '@components/Navbar';
 import { motion } from "framer-motion";
 
 import styled from 'styled-components';
 
 function Hero() {
-  const auth = useAuth();
   return (
     <>
     <Navbar />
@@ -49,18 +43,6 @@ function Hero() {
             A simple API to take the work out of managing users and leaderboards
         </Heading>
         </motion.div>
-        {/* <Button
-          text={'Get Started'}
-          link={'/dashboard'}
-          isInternal={true}
-          newWindow={false}
-        />
-        <Button
-          text={'Read the docs'}
-          link={'/documentation'}
-          isInternal={true}
-          newWindow={false}
-        /> */}
         <Stack spacing={4} direction="column" align="center" >
           <Button as="a" href="/login" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
             Create Account
@@ -70,18 +52,6 @@ function Hero() {
           </Button>
 
         </Stack>
-        {/* <button
-          type="button"
-          onClick={() => auth.signinWithProvider('google')}
-        >
-          Sign in with google
-        </button>
-        <button
-          type="button"
-          onClick={() => auth.signout()}
-        >
-          Logout
-        </button> */}
       </Flex>
     </Flex >
     </>

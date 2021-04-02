@@ -2,8 +2,17 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+/*
+  This will hide the focus indicator if the element receives focus    via the mouse,
+  but it will still show up on keyboard focus.
+*/
+.js-focus-visible :focus:not([data-focus-visible-added]) {
+  outline: none;
+  box-shadow: none;
 }
 
 * {

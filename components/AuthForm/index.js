@@ -1,7 +1,7 @@
 import { Box, Tabs, Tab, TabList, TabPanels, TabPanel, Flex, Spacer, Text } from "@chakra-ui/react";
 import SignUpForm from '@components/SignUpForm';
 import SignInForm from '@components/SignInForm';
-import Logo from '@components/Logo'
+import Logo from '@components/Logo/index-rename'
 
 function AuthForm() {
   return (

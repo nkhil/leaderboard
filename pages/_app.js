@@ -3,6 +3,7 @@ import { ProvideAuth } from '../utils/authProvider'
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from '../constants/theme';
 import { Fonts } from '../constants/fonts';
+import 'focus-visible/dist/focus-visible';
 
 function Application({ Component, pageProps }) {
   return (

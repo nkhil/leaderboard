@@ -4,9 +4,7 @@ const NavItem = ({ children, isLast, onClick, to = "/", ...rest }) => {
   return (
     <Link
       href={to}
-      _hover={{
-        borderBottom: '1px solid red',
-      }}
+      style={{ textDecoration: 'none' }}
       onClick={onClick}
     >
       <Text
@@ -19,7 +17,7 @@ const NavItem = ({ children, isLast, onClick, to = "/", ...rest }) => {
         display="block" {...rest}
         m='0'
         _hover={{
-          borderBottom: '0',
+          color: '#000',
         }}
       >
         {children}

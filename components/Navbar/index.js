@@ -59,9 +59,6 @@ function Navbar(props) {
                   rounded="md"
                   color='#000'
                   bg={["white", "white", "primary.500", "primary.500"]}
-                  _hover={{
-                    bg: ["black", "black", "black", "black"]
-                  }}
                 >
                   Sign up
               </Button>
