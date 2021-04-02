@@ -1,7 +1,6 @@
 import { Flex, Heading, Button, Stack } from "@chakra-ui/react";
 import Navbar from '@components/Navbar';
-import { motion } from "framer-motion";
-
+import ScrollAnimation from 'react-animate-on-scroll';
 import styled from 'styled-components';
 
 function Hero() {
@@ -21,28 +20,23 @@ function Hero() {
         alignItems='center'
         flexDirection='column'
       >
-        
-        <motion.div
-          animate={{ y: -20 }}
-          transition={{ duration: 0.2 }}
+        <ScrollAnimation animateIn='fadeIn'>
+        <Heading
+          as='h2'
+          fontSize={{
+            base: '3xl',
+            md: '4xl',
+            lg: '5xl',
+          }}
+          fontWeight='700'
+          color='white'
+          textAlign='center'
+          px={2}
+          my={12}
+          mt={20}
         >
-          <Heading
-            as='h2'
-            fontSize={{
-              base: '3xl',
-              md: '4xl',
-              lg: '5xl',
-            }}
-            fontWeight='700'
-            color='white'
-            textAlign='center'
-            px={2}
-            my={12}
-            mt={20}
-          >
-            A simple API to take the work out of managing users and leaderboards
+          A simple API to take the work out of managing users and leaderboards
         </Heading>
-        </motion.div>
         <Stack spacing={4} direction="column" align="center" >
           <Button as="a" href="/login" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
             Create Account
@@ -50,8 +44,8 @@ function Hero() {
           <Button colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
             Read Documentation
           </Button>
-
         </Stack>
+        </ScrollAnimation>
       </Flex>
     </Flex >
     </>

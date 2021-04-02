@@ -4,6 +4,7 @@ import { ChakraProvider } from "@chakra-ui/react"
 import theme from '../constants/theme';
 import { Fonts } from '../constants/fonts';
 import 'focus-visible/dist/focus-visible';
+import "animate.css/animate.min.css";
 
 function Application({ Component, pageProps }) {
   return (
