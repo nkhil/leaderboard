@@ -1,7 +1,5 @@
 import { Flex, Heading, Button, Stack } from "@chakra-ui/react";
 import Navbar from '@components/Navbar';
-import ScrollAnimation from 'react-animate-on-scroll';
-import styled from 'styled-components';
 
 function Hero() {
   return (
@@ -20,7 +18,6 @@ function Hero() {
         alignItems='center'
         flexDirection='column'
       >
-        <ScrollAnimation animateIn='fadeIn'>
         <Heading
           as='h2'
           fontSize={{
@@ -38,41 +35,42 @@ function Hero() {
           A simple API to take the work out of managing users and leaderboards
         </Heading>
         <Stack spacing={4} direction="column" align="center" >
-          <Button as="a" href="/login" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
-            Create Account
+          <Button as="a" href="/sign-up" bg="black" color="white" size="lg" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+            Sign up now
           </Button>
-          <Button colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+          <Button as="a" href="/documentation" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
             Read Documentation
           </Button>
         </Stack>
-        </ScrollAnimation>
       </Flex>
     </Flex >
     </>
   );
 }
 
-export default styled(Hero)`
-  max-width: 1000px;
-  color: white;
-  padding: 50px 20px;
-  margin: auto;
+export default Hero;
 
-  h2 {
-    font-weight: 200;
-    font-size: 2.5rem;
-    padding: 30px;
-    margin-bottom: 20px;
-  }
+// export default styled(Hero)`
+//   max-width: 1000px;
+//   color: white;
+//   padding: 50px 20px;
+//   margin: auto;
 
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
+//   h2 {
+//     font-weight: 200;
+//     font-size: 2.5rem;
+//     padding: 30px;
+//     margin-bottom: 20px;
+//   }
+
+//   @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) {
     
-    padding: 20px 10px;
+//     padding: 20px 10px;
     
-    h2 {
-      font-size: 2rem;
-      padding: 5px;
-      margin-bottom: 20px;
-    }
-  }
-`;
+//     h2 {
+//       font-size: 2rem;
+//       padding: 5px;
+//       margin-bottom: 20px;
+//     }
+//   }
+// `;

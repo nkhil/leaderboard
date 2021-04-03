@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import Form from '@components/AuthForm';
+import Form from '@components/SignUpAuthForm';
 import { useRouter } from "next/router";
 import { useAuth } from "../utils/authProvider";
 import React, { useEffect } from "react";
@@ -18,7 +18,7 @@ export default function Account() {
   return (
     <>
       <Head>
-        <title>Leaderboard API: Sign in</title>
+        <title>Leaderboard API: Sign up</title>
       </Head>
       <Box
         bg={'brand.200'}

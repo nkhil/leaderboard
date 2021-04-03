@@ -141,7 +141,7 @@ function CredentialsBox({ className, status, onClick, credentials }) {
             <Text as="p" mb={4}>
               If you have any questions about using the leaderboard API, head over to the <a target="_blank" href="https://subgenius-corp.gitbook.io/leaderboard/">leaderboard api Gitbook page</a> for our documentation.
             </Text>
-            <Button isExternal as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<BiLinkExternal />} colorScheme="teal" variant="solid">
+            <Button as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<BiLinkExternal />} colorScheme="teal" variant="solid">
               Read documentation
             </Button>
             <Heading>
@@ -152,7 +152,7 @@ function CredentialsBox({ className, status, onClick, credentials }) {
           </Text>
           <Stack direction={["column", "row"]} spacing='10px' mb='6'>
             <Box>
-              <Button isExternal as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<MdEmail />} variant="solid">
+              <Button as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<MdEmail />} variant="solid">
                 Email
               </Button>
             </Box>
