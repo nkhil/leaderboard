@@ -44,7 +44,7 @@ export default function Dashboard() {
     }
   }, [data])
 
-  const { data: userCreds, error: userCredsError } = useSWR((userId  && shouldMakeNewUserCreds) ? `/api/user-creds?userId=${userId}` : null, fetcher);
+  const { data: userCreds, error: userCredsError } = useSWR((userId && shouldMakeNewUserCreds) ? `/api/user-creds?userId=${userId}` : null, fetcher);
 
   useEffect(() => {
     if (userCreds) {
