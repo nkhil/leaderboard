@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-// const { ApiKey } = require('./apiKey');
 
 const UserCredentialSchema = new mongoose.Schema({
   clientId: { type: String, required: true },
