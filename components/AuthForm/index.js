@@ -1,5 +1,4 @@
 import { Box, Tabs, Tab, TabList, TabPanels, TabPanel, Flex, Spacer, Text } from "@chakra-ui/react";
-import SignUpForm from '@components/SignUpForm';
 import SignInForm from '@components/SignInForm';
 
 function AuthForm() {
