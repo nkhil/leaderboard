@@ -28,6 +28,8 @@ const NavBarContainer = ({ children, ...props }) => {
 
 function Navbar(props) {
   const auth = useAuth();
+  const SIGN_UP = 'Sign up';
+  const LOG_OUT = 'Logout';
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen)
@@ -53,21 +55,19 @@ function Navbar(props) {
               <NavItem to='/'>Home</NavItem>
               <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/login'>Sign in</NavItem>
-              <NavItem to='/'>
-                <Button
-                  as="a" 
-                  href="/sign-up"
-                  size="md"
-                  rounded="md"
-                  color='white'
-                  bg={["black", "black", "primary.500", "primary.500"]}
-                  _hover={{
-                    bg: "black"
-                  }}
-                >
-                  Sign up
+              <Button
+                as="a"
+                href="/sign-up"
+                size="md"
+                rounded="md"
+                color='white'
+                bg={["black", "black", "primary.500", "primary.500"]}
+                _hover={{
+                  bg: "black"
+                }}
+              >
+                { SIGN_UP }
               </Button>
-              </NavItem>
             </>
           }
           {auth.user 
@@ -77,7 +77,7 @@ function Navbar(props) {
               <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/dashboard'>Dashboard</NavItem>
               <NavItem onClick={() => auth.signout()}>
-                Log out
+                { LOG_OUT }
               </NavItem>
             </>
           }
