@@ -1,23 +1,24 @@
-import styled from 'styled-components';
 import { useAuth } from "../../utils/authProvider";
 import { Box, Flex, Text, Stack, Button, Link } from "@chakra-ui/react";
-import { MdDelete, MdEmail } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { BiLinkExternal } from "react-icons/bi";
 import { FaTwitter } from "react-icons/fa";
 import Heading from '@components/Heading';
 import CredentialsBoxContainer from './CredentialsBoxContainer';
 import GreyContainer from './GreyContainer';
 import CTAButton from './Button';
+import ConfettiExplosion from '@reonomy/react-confetti-explosion';
 
-function CredentialsBox({ className, status, onClick, credentials }) {
-  const { clientId, clientSecret, apiKeys } = credentials;
+function CredentialsBox({ status, onClick, credentials }) {
+  const { clientId, clientSecret } = credentials;
   const auth = useAuth();
   const STATUSES = {
     noApiKey: 'NO_API_KEY',
     existingApiKey: 'EXISTING_API_KEY',
     newApiKey: 'NEW_API_KEY',
   }
-  console.log('USER', auth.user)
+  console.log('USER', auth.user);
+
   const renderInformation = (status) => {
     const statusIsValid = Object.values(STATUSES).includes(status)
     if (!statusIsValid) throw new Error('Invalid Status supplied')
@@ -43,6 +44,7 @@ function CredentialsBox({ className, status, onClick, credentials }) {
       case status === STATUSES['newApiKey']:
         return (
           <>
+            { true && <ConfettiExplosion stagger={500} />}
             <Heading>
               Your credentials are ready!
             </Heading>
@@ -139,7 +141,10 @@ function CredentialsBox({ className, status, onClick, credentials }) {
               Documentation
             </Heading>
             <Text as="p" mb={4}>
-              If you have any questions about using the leaderboard API, head over to the <a target="_blank" href="https://subgenius-corp.gitbook.io/leaderboard/">leaderboard api Gitbook page</a> for our documentation.
+              If you have any questions about using the leaderboard API, head over to the <Link fontWeight='600' color='brand.200' as='a' target="_blank" href="https://subgenius-corp.gitbook.io/leaderboard/">leaderboard api Gitbook page</Link> for our documentation.
+            </Text>
+            <Text as="p" mb={4}>
+              Note: You can find the most up-to-date OpenAPI Spec (swagger) at <Link fontWeight='600' color='brand.200' as='a' target="_blank" href="https://api.leaderboardapi.com/swagger">api.leaderboardapi.com/swagger</Link>
             </Text>
             <Button as="a" href="https://subgenius-corp.gitbook.io/leaderboard/" bg="#25A979" color="#fff" size="md" width='200px' leftIcon={<BiLinkExternal />} colorScheme="teal" variant="solid">
               Read documentation

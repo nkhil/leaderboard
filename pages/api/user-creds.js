@@ -1,4 +1,3 @@
-// import Model from '../../models/apiKey'
 import { generateApiKey, createHash } from '../../lib/apiKey';
 import constants from '../../constants';
 import { createClientId, createClientSecret } from '../../lib/clientCredentials';

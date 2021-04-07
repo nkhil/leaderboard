@@ -53,21 +53,19 @@ function Navbar(props) {
               <NavItem to='/'>Home</NavItem>
               <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/login'>Sign in</NavItem>
-              <NavItem to='/'>
-                <Button
-                  as="a" 
-                  href="/sign-up"
-                  size="md"
-                  rounded="md"
-                  color='white'
-                  bg={["black", "black", "primary.500", "primary.500"]}
-                  _hover={{
-                    bg: "black"
-                  }}
-                >
-                  Sign up
-              </Button>
-              </NavItem>
+              <Button
+                as="a" 
+                href="/sign-up"
+                size="md"
+                rounded="md"
+                color='white'
+                bg={["black", "black", "primary.500", "primary.500"]}
+                _hover={{
+                  bg: "black"
+                }}
+              >
+                Sign up
+            </Button>
             </>
           }
           {auth.user 
