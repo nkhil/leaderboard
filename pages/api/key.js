@@ -1,4 +1,3 @@
-import constants from '../../constants';
 import '../../models/all';
 import { getUserCredentials } from '../../helpers/database';
 import { connectToDatabase } from '../../utils/mongodb';

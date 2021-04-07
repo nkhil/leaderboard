@@ -56,7 +56,7 @@ function Navbar(props) {
               <NavItem to='/documentation'>Docs</NavItem>
               <NavItem to='/login'>Sign in</NavItem>
               <Button
-                as="a"
+                as="a" 
                 href="/sign-up"
                 size="md"
                 rounded="md"
