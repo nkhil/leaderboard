@@ -22,18 +22,12 @@ export default async (req, res) => {
 			clientId,
 			userId,
 			clientSecretHash,
-			apiKeys: [
-        { apiKey },
-      ],
 		}
 		const response = await addUserCredentials(entry);
     console.log('🚀 ~ file: user-creds.js ~ line 34 ~ response', response)
     const credentials = {
       clientId: response.clientId,
       clientSecret,
-      apiKeys: [
-        { apiKey }
-      ],
     }
     res.status(200).json(credentials);
 	} catch (error) {
