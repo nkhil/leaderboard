@@ -1,4 +1,4 @@
-import { generateApiKey, createHash } from '../../lib/apiKey';
+import { createHash } from '../../lib/apiKey';
 import constants from '../../constants';
 import { createClientId, createClientSecret } from '../../lib/clientCredentials';
 import { addUserCredentials } from '../../helpers/database';
@@ -6,15 +6,9 @@ const { SALT_LENGTH, CLIENT_ID_LENGTH } = constants;
 
 export default async (req, res) => {
 	const { userId } = req.query;
-	console.log('userId', userId)
-	const apiKey = generateApiKey(SALT_LENGTH);
-	console.log('🚀 ~ file: apikey.js ~ line 12 ~ apiKey', apiKey)
 	const clientId = createClientId(CLIENT_ID_LENGTH);
-	console.log('🚀 ~ file: apikey.js ~ line 14 ~ clientId', clientId)
 	const clientSecret = createClientSecret(SALT_LENGTH);
-	console.log('🚀 ~ file: apikey.js ~ line 16 ~ clientSecret', clientSecret)
-	const clientSecretHash = createHash(clientSecret);
-  console.log('🚀 ~ file: user-creds.js ~ line 18 ~ clientSecretHash', clientSecretHash)
+	const clientSecretHash = await createHash(clientSecret);
 
 	try {
 		const entry = {
