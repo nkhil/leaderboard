@@ -2,7 +2,7 @@ import { Grid, Flex, Heading, Button, Stack } from "@chakra-ui/react";
 import Card from '../Card';
 import SignUp from '../../../assets/svg/user.svg'
 import Creds from '../../../assets/svg/creds.svg';
-import Key from '../../../assets/svg/key.svg';
+import Build from '../../../assets/svg/build.svg';
 
 
 function FeatureCards() {
@@ -22,16 +22,19 @@ function FeatureCards() {
         my={12}
       >
         <Card 
-          text={'Sign up'} 
+          text={'1. Sign up'}
+          description={'Sign up using Github, Google or with a username & password'}
           Icon={SignUp}
         />
         <Card 
-          text={'Create credentials'}
+          text={'2. Create credentials'}
+          description={'Create credentials that will be used to get a secure token'}
           Icon={Creds}
         />
         <Card
-          text={'Start building features'} 
-          Icon={Key}
+          text={'3. Start building!'}
+          description={'Start building leaderboard and scoreboard features for your game or app'}
+          Icon={Build}
         />
       </Grid>
     </>

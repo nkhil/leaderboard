@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Leaderboard API</title>
+        <title>Leaderboard API: A simple API to create scoreboards and leaderboards</title>
       </Head>
       <Box>
         <Hero />
