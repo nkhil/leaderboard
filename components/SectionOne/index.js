@@ -7,15 +7,15 @@ function SectionOne() {
     <>
       <Flex justifyContent="center">
         <Flex
+          my={12}
           p={4}
           pb={12}
           width={{
-            sm: "30em",
+            sm: "25em",
             md: "48em",
             lg: "62em",
             base: "30em",
           }}
-          // maxWidth='1000px'
           alignItems='center'
           flexDirection='column'
         >
@@ -31,11 +31,17 @@ function SectionOne() {
               color='black'
               textAlign='center'
               lineHeight={'1.3'}
-              px={2}
+              px={0}
               my={0}
               mt={4}
+              width={{
+                md: '18em',
+                lg: '18em',
+                sm: '10em',
+                base: '12em'
+              }}
             >
-              Get started shipping your leaderboard or scoreboard features
+              Start shipping your leaderboard features in 3 easy steps
             </Heading>
           </FadeIn>
           <FadeIn delay={700}>
