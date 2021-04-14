@@ -1,14 +1,19 @@
-import { createHash } from '../../lib/apiKey';
 import constants from '../../constants';
 import { createClientId, createClientSecret } from '../../lib/clientCredentials';
 import { addUserCredentials } from '../../helpers/database';
+import secretHelper from '@subgeniuscorp/secret-helper';
 const { SALT_LENGTH, CLIENT_ID_LENGTH } = constants;
 
 export default async (req, res) => {
 	const { userId } = req.query;
 	const clientId = createClientId(CLIENT_ID_LENGTH);
 	const clientSecret = createClientSecret(SALT_LENGTH);
-	const clientSecretHash = await createHash(clientSecret);
+	const clientSecretHash = await secretHelper.createHash({
+    valueToHash: clientSecret
+  });
+  console.log('~  -----------------------------------')
+  console.log('~ clientSecretHash', clientSecretHash)
+  console.log('~  -----------------------------------')
 
 	try {
 		const entry = {
