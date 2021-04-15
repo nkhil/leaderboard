@@ -1,4 +1,4 @@
-import { Grid, Flex, Heading, Button, Stack, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 function Card({ text, Icon, description }) {
   return (
@@ -9,13 +9,12 @@ function Card({ text, Icon, description }) {
         p={2}
         alignItems={'center'}
         marginTop={6}
-        // border={'2px solid #7D7D7D'}
         borderRadius={'10px'}
       >
         <Icon />
         <Text 
           as="h3"
-          marginTop={4}
+          marginTop={8}
           fontSize={23}
           textAlign='center'
           fontWeight={800}

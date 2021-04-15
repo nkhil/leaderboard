@@ -7,7 +7,7 @@ function SectionOne() {
     <>
       <Flex justifyContent="center">
         <Flex
-          my={12}
+          mt={12}
           p={4}
           pb={12}
           width={{
