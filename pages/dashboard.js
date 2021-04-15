@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Head from 'next/head';
 import { useAuth } from "../utils/authProvider";
 import React, { useEffect, useState } from "react";
 import useSWR from 'swr';
@@ -9,6 +10,11 @@ import LoadingScreen from '@components/LoadingScreen';
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Dashboard() {
+
+  <Head>
+    <title>Leaderboard API: Dashboard</title>
+  </Head>
+
   const auth = useAuth();
   const router = useRouter();
   const [userId, setUserId] = useState('');
