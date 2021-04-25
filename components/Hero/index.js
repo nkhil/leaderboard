@@ -37,11 +37,11 @@ function Hero() {
             A simple API to take the work out of managing users and leaderboards
           </Heading>
           <Stack spacing={4} direction="column" align="center" >
-            <Button as="a" href="/sign-up" bg="black" color="white" size="lg" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
-              Sign up now
+            <Button as="a" href="/documentation" bg="black" color="white" size="lg" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+              Read documentation
             </Button>
-            <Button as="a" href="/documentation" colorScheme="white" size="lg" variant="outline" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
-              Read Documentation
+            <Button as="a" href="/sign-up" bg="black" color="white" size="lg" _hover={{ bgColor: '#000', color: '#fff', border: '0' }}>
+              Sign up
             </Button>
           </Stack>
         </FadeIn>
