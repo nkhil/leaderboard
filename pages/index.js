@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Hero from '@components/Hero';
 import SectionOne from '@components/SectionOne';
 import SectionTwo from '@components/SectionTwo';
+import SectionThree from '@components/SectionThree';
 import Footer from '@components/Footer';
 import { Box } from "@chakra-ui/react";
 
@@ -15,6 +16,7 @@ export default function Home() {
         <Hero />
         <SectionOne />
         <SectionTwo />
+        <SectionThree />
         <Footer />
       </Box>
     </>

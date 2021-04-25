@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Heading, Stack, Button, VStack } from "@chakra-ui/react";
+import { Button } from "@chakra-ui/react";
 
 function CTAButton ({ text, onClick }) {
   return (
