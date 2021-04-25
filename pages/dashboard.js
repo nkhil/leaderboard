@@ -6,6 +6,7 @@ import useSWR from 'swr';
 import CredentialsBox from '@components/CredentialsBox';
 import Navbar from '@components/Navbar';
 import LoadingScreen from '@components/LoadingScreen';
+import Footer from '@components/Footer';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -84,6 +85,7 @@ export default function Dashboard() {
             clientSecret,
           }}
         />
+      <Footer />
       </>
     )
   }
@@ -100,6 +102,7 @@ export default function Dashboard() {
             clientSecret,
           }}
         />
+        <Footer />
       </>
     )
   }
@@ -116,6 +119,7 @@ export default function Dashboard() {
             clientSecret,
           }}
         />
+        <Footer />
       </>
     )
   }
