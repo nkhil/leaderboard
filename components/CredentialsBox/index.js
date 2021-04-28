@@ -38,6 +38,7 @@ function CredentialsBox({ status, onClick, credentials }) {
             <CTAButton 
               text='Create my client credentials'
               onClick={onClick}
+              marginBottom
             />
           </>
         )

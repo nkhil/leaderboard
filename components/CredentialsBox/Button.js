@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-function CTAButton ({ text, onClick }) {
+function CTAButton ({ text, onClick, marginBottom }) {
   return (
     <>
       <Button 
@@ -13,6 +13,7 @@ function CTAButton ({ text, onClick }) {
         marginTop="30px"
         _hover={{ bg: "brand.300" }}
         onClick={onClick}
+        marginBottom={marginBottom ? '200px' : '' }
       >
         { text }
       </Button>
