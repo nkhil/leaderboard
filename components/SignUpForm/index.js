@@ -27,12 +27,12 @@ function SignUpForm() {
     try {
       await auth.signinWithProvider('google');
     } catch (error) {
-      
+
     }
   }
 
   return (
-    <Box padding={'20px'} bg='gray.100' p={6} borderRadius='5px' w='400px'>
+    <Box bg='gray.100' p={6} borderRadius='5px'>
       <form action='submit' onSubmit={handleFormSubmit}>
         <Stack spacing={2}>
           <FormControl isRequired>
