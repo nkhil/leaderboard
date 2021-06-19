@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { 
+import React, { useState, useEffect } from "react";
+import {
   useToast,
   FormLabel,
   Input,
@@ -9,17 +9,19 @@ import {
   Stack,
   Icon,
   Button,
-  Box 
+  Box
 } from "@chakra-ui/react";
 import { BiLock, BiEnvelope } from "react-icons/bi";
 import { AiFillGoogleCircle } from "react-icons/ai";
 import { useAuth } from '../../utils/authProvider';
+import constants from '../../constants';
 
-const errorStatuses = {
-  'auth/wrong-password': {
-    message: 'Incorrect username or password',
-    description: ''
-  },
+function getErrorMessage(googleErrorCode) {
+  const errorCodeExists = constants.authErrorCodes.includes(googleErrorCode)
+  return {
+    title: errorCodeExists ? 'Invalid login credentials' : 'Unknown error occured',
+    body: errorCodeExists ? 'Something went wrong. Please try again or reset your credentials' : 'Unable to log you in'
+  }
 }
 
 function SignInForm() {
@@ -27,47 +29,48 @@ function SignInForm() {
   const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setShowToastMessage] = useState('');
-  const [toastDescription, setToastDescription] = useState('');
+  const [toastMessage, setShowToastMessage] = useState(null);
+
+  useEffect(() => {
+    if (toastMessage) {
+      const { title, body } = toastMessage;
+      toast({
+        title,
+        description: body,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+        position: 'top',
+      });
+    }
+  }, [toastMessage, toast]);
+
   const handleEmailChange = e => setEmail(e.target.value);
   const handlePasswordChange = e => setPassword(e.target.value);
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
+      console.log(`Attempting to sign in using ${email} and ${password}`)
       await auth.signin(email, password)
     } catch (error) {
       console.log('error code', error.code);
-      if (error.code === 'auth/wrong-password') {
-        console.log('Wrong Password!')
-        const { message, description } = errorStatuses[error.code];
-        setShowToastMessage(message);
-        setToastDescription(description);
-        setShowToast(true);
-      }
+      const { title, body } = getErrorMessage(error.code);
+      setShowToastMessage({ title, body })
     }
   }
   const handleSignInWithGoogle = async () => await auth.signinWithProvider('google');
 
   return (
     <Box bg='#fff' p={6} borderRadius='5px' w='350px' border='1px solid #eaecef'>
-      {
-        showToast === true ? toast({
-          title: toastMessage || 'An error occured',
-          description: toastDescription,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-          position: 'top',
-        }) : ''
-      }
       <form action='submit' onSubmit={handleFormSubmit}>
         <Stack spacing={2}>
           <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
+            <FormLabel>
+              Email
+            </FormLabel>
             <InputGroup>
               <InputLeftElement children={<Icon as={BiEnvelope} />} />
-              <Input 
+              <Input
                 type='email'
                 placeholder='Email'
                 aria-label='email'
